@@ -321,7 +321,9 @@ const UI = {
             .addEventListener('click', UI.disconnect);
         document.getElementById("noVNC_connect_button")
             .addEventListener('click', UI.connect);
-        document.getElementById("noVNC_connect_button").click()
+        setTimeout(() => {
+            UI.connect()
+        }, 1000);
         document.getElementById("noVNC_cancel_reconnect_button")
             .addEventListener('click', UI.cancelReconnect);
 
@@ -1000,7 +1002,7 @@ const UI = {
             .classList.remove("noVNC_open");
     },
 
-    connect(event, password) {
+    connect(event = null, password = '12345678') {
 
         // Ignore when rfb already exists
         if (typeof UI.rfb !== 'undefined') {
