@@ -321,6 +321,7 @@ const UI = {
             .addEventListener('click', UI.disconnect);
         document.getElementById("noVNC_connect_button")
             .addEventListener('click', UI.connect);
+        document.getElementById("noVNC_connect_button").click()
         document.getElementById("noVNC_cancel_reconnect_button")
             .addEventListener('click', UI.cancelReconnect);
 
@@ -1231,18 +1232,19 @@ const UI = {
             .getElementById(inputFocus).focus(), 100);
 
         Log.Warn("Server asked for credentials");
-        UI.showStatus(_("Credentials are required"), "warning");
+        //UI.showStatus(_("Credentials are required"), "warning");
+        this.setCredentials()
     },
 
-    setCredentials(e) {
+    setCredentials(e = null) {
         // Prevent actually submitting the form
-        e.preventDefault();
+        if(e) e.preventDefault();
 
         let inputElemUsername = document.getElementById('noVNC_username_input');
         const username = inputElemUsername.value;
 
         let inputElemPassword = document.getElementById('noVNC_password_input');
-        const password = inputElemPassword.value;
+        const password = '12345678' //inputElemPassword.value;
         // Clear the input after reading the password
         inputElemPassword.value = "";
 
